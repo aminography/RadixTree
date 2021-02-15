@@ -30,7 +30,7 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
         private set
 
     override val values: MutableList<T>
-        get() = searchPrefix("") as MutableList<T>
+        get() = exploreChildrenValuesViaDFS(root, 0, Int.MAX_VALUE)
 
     override val entries: MutableSet<MutableRadixTree.MutableEntry<T>>
         get() = exploreChildrenEntriesViaDFS(root, 0, Int.MAX_VALUE)
@@ -46,12 +46,11 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
      * 1. Finds the first node whose key satisfies the prefix string exactly.
      * 2. Explores children of the node that is found in step 1.
      */
-    override fun searchPrefix(prefix: String, offset: Int, limit: Int): List<T> {
+    override fun prefixSearch(prefix: String, offset: Int, limit: Int): List<T> {
         if (offset >= size || limit <= 0) return listOf()
         val tunedOffset = if (offset < 0) 0 else offset
 
         val prefixRoot = if (prefix.isEmpty()) root else findPrefixRoot(prefix)
-
         return prefixRoot?.let {
             exploreChildrenValuesViaDFS(it, tunedOffset, limit)
         } ?: listOf()

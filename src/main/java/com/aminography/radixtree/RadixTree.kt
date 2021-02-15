@@ -36,7 +36,7 @@ interface RadixTree<T> {
      *
      * @return the result of the search as a [List].
      */
-    fun searchPrefix(prefix: String, offset: Int = 0, limit: Int = Int.MAX_VALUE): List<T>
+    fun prefixSearch(prefix: String, offset: Int = 0, limit: Int = Int.MAX_VALUE): List<T>
 
     interface Entry<out T> {
         /**
