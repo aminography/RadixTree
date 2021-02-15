@@ -1,9 +1,10 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id 'com.jfrog.bintray' version '1.8.5'
 }
 
-group 'com.aminography.radixtree'
-version '1.0.0'
+group 'com.aminography'
+version '1.0.4'
 
 repositories {
     mavenCentral()
@@ -26,12 +27,6 @@ ext {
     bintrayName = 'RadixTree'
     orgName = 'aminography'
 
-    publishedGroupId = 'com.aminography'
-    artifact = 'radixtree'
-
-    libraryVersion = version
-
-    libraryName = 'RadixTree'
     libraryDescription = 'RadixTree is an implementation of Radix Trie.'
 
     siteUrl = 'https://github.com/aminography/RadixTree'
@@ -45,3 +40,6 @@ ext {
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ["Apache-2.0"]
 }
+
+apply from: rootProject.file('gradle/bintray-install.gradle')
+apply from: rootProject.file('gradle/bintray-java.gradle')
