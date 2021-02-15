@@ -21,30 +21,14 @@ class MutableRadixTreeImplTest {
     }
 
     @Test
-    fun `element with existing key should not be inserted`() {
-        // Given
-        val expected = listOf(1)
-        val tree = mutableRadixTreeOf<Int>()
-
-        // When
-        tree.put("1", 1)
-        tree.put("1", 2)
-        val result = tree.values
-
-        // Then
-        assertEquals(tree.size, 1)
-        assertEquals(result, expected)
-    }
-
-    @Test
-    fun `element with existing key should replace the old one due to replace flag`() {
+    fun `element with existing key should not be replaced`() {
         // Given
         val expected = listOf(2)
         val tree = mutableRadixTreeOf<Int>()
 
         // When
         tree.put("1", 1)
-        tree.put("1", 2, true)
+        tree.put("1", 2)
         val result = tree.values
 
         // Then
