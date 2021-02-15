@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.aminography.radixtree
 
 import com.aminography.radixtree.internal.TreeNode
@@ -57,11 +59,10 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
     }
 
     /*
-     * Explores the tree and finds the first node whose path from the root matches all the prefix
-     * characters in order. To find the target node, the tree will be traversed by a heuristic
-     * Breadth-First Search (BFS) algorithm. So that at each level of the tree, the algorithm
-     * chooses the next step by finding the only child whose key will match the rest of the input
-     * prefix. So, the time complexity for this function is `O(L)` where `L` is the length of the
+     * Explores the tree and finds the first node whose path from the root matches all the prefix characters in order.
+     * To find the target node, the tree will be traversed by a heuristic Breadth-First Search (BFS) algorithm. So that
+     * at each level of the tree, the algorithm chooses the next step by finding the only child whose key will match the
+     * rest of the input prefix. So, the time complexity for this function is `O(L)` where `L` is the length of the
      * input prefix.
      */
     private fun findPrefixRoot(prefix: String): TreeNode<T>? {
@@ -98,11 +99,10 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
     }
 
     /*
-     * Explores all of the nodes in the subtree of [root] by using a Depth-First Search (DFS)
-     * algorithm. The traversal is in such a way that the order of inserting elements gets retained
-     * in the resulting list. To analyze the time complexity for this function, consider `V` as the
-     * number of nodes containing a value. The maximum number of nodes should be traversed to
-     * explore them is `(2V - 1)`. So, we can say that the time complexity is `O(V)`.
+     * Explores all of the nodes in the subtree of [root] by using a Depth-First Search (DFS) algorithm. The traversal
+     * is in such a way that the order of inserting elements gets retained in the resulting list. To analyze the time
+     * complexity for this function, consider `V` as the number of nodes containing a value. The maximum number of nodes
+     *  should be traversed to explore them is `(2V - 1)`. So, we can say that the time complexity is `O(V)`.
      */
     private fun exploreChildrenValuesViaDFS(
         root: TreeNode<T>,
@@ -159,26 +159,24 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
         return result
     }
 
-    override fun put(key: String, value: T, replace: Boolean) {
-        size++
-        insertNode(key, value, replace)
-    }
+    override fun put(key: String, value: T): T? = insertNode(key, value)
 
-    override fun put(value: T, replace: Boolean, keyTransformer: (T) -> String) {
-        put(keyTransformer(value), value, replace)
-    }
+    override fun put(value: T, keyTransformer: (T) -> String): T? = put(keyTransformer(value), value)
 
     override fun putAll(from: RadixTree<T>) {
         for (entry in from.entries) put(entry.key, entry.value)
     }
 
     /*
-     * Inserts the input element into the tree at the right place according to the corresponding key.
-     * The time complexity to insert a node is `O(l)` where `l` is the length of the key associated
-     * with the value. So, the overall complexity to inserting `n` pairs of key/value is `O(L * n)`
-     * where `L` stands for the maximum length of keys in the dataset.
+     * Inserts the input element into the tree at the right place according to the corresponding key. The time
+     * complexity to insert a node is `O(l)` where `l` is the length of the key associated with the value. So, the
+     * overall complexity to inserting `n` pairs of key/value is `O(L * n)` where `L` stands for the maximum length of
+     *  keys in the dataset.
      */
-    private fun insertNode(key: String, value: T, replace: Boolean) {
+    private fun insertNode(key: String, value: T): T? {
+        size++
+        var result: T? = null
+
         var keyResidual = key
         val stack = Stack<TreeNode<T>>()
 
@@ -188,8 +186,8 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
             val lcs = longestCommonPrefix(node.key, keyResidual)
 
             if (lcs == 0 || (lcs < keyResidual.length && lcs == node.key.length)) {
-                // node is root OR key of the node is a prefix of keyResidual and shorter then it.
-                // (so there are descendants to cover it)
+                // node is root OR key of the node is a prefix of keyResidual and shorter then it. (so there are
+                // descendants to cover it)
 
                 keyResidual = keyResidual.substring(lcs)
 
@@ -207,8 +205,7 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
                     node.addChild(TreeNode(keyResidual, value))
                 }
             } else if (lcs > 0 && lcs < node.key.length) {
-                // a prefix of key of the node is a prefix of keyResidual, so the key of the node
-                // must be divided.
+                // a prefix of key of the node is a prefix of keyResidual, so the key of the node must be divided.
 
                 val child = TreeNode(
                     node.key.substring(lcs),
@@ -229,16 +226,18 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
                     node.value = value
                 }
             } else if (lcs == keyResidual.length && lcs == node.key.length) {
-                // a node exists with the exact key
+                // a node exists with the exact key.
 
                 if (node.value != null) {
-                    if (replace) node.value = value
+                    result = node.value
+                    node.value = value
                     size--
-                    return
+                    return result
+                } else {
+                    node.value = value
                 }
-                node.value = value
             } else {
-                // end of the tree, add the child as a leaf
+                // end of the tree, add the child as a leaf.
 
                 val child = TreeNode(
                     node.key.substring(lcs),
@@ -251,6 +250,7 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
                 node.addChild(child)
             }
         }
+        return result
     }
 
     override fun remove(key: String): T? {
