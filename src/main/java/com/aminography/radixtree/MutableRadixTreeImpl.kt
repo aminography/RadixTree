@@ -326,7 +326,7 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
                 return
             }
             println("┐ ${node?.key}" + (node?.value?.let { " [$it]" } ?: ""))
-            for (child in node?.children?.dropLast(1) ?: listOf()) {
+            for (child in node?.children?.dropLast(1).orEmpty()) {
                 print("$prefix├─")
                 traverse(child, "$prefix│ ")
             }
