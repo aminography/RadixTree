@@ -9,3 +9,44 @@ prefix, and `V` stands for number of nodes that will be discovered.
 In case of large datasets, the length of keys are dramatically lower than number of items, which means that the time complexity of prefix search using `RadixTree` is significantly better than linear search.
 
 ## * Documentation is evolving...
+
+<br/>
+
+Download
+--------
+**`RadixTree`** is available on [bintray](https://bintray.com/aminography/maven/RadixTree) to download using build tools systems.
+
+### • Gradle
+Add the following lines to your `build.gradle` file:
+
+```gradle
+repositories {
+    jcenter()
+}
+  
+dependencies {
+    implementation 'com.aminography:radixtree:1.0.4'
+}
+```
+
+### • Maven
+Add the following lines to your `pom.xml` file:
+
+```xml
+<repositories>
+    <repository>
+        <id>jcenter</id>
+        <url>https://jcenter.bintray.com/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.aminography</groupId>
+        <artifactId>radixtree</artifactId>
+        <version>1.0.4</version>
+    </dependency>
+</dependencies>
+```
+
+<br/>
