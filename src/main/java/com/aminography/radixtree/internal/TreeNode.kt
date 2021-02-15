@@ -1,7 +1,7 @@
 package com.aminography.radixtree.internal
 
 /**
- * Models internal node for the [RadixTree] to build the hierarchy of the nodes. Each node can
+ * Models internal node for the [com.aminography.radixtree.RadixTree] to build the hierarchy of the nodes. Each node can
  * contain a value, or be just a transitional node.
  *
  * @param T the type of the elements contained in the tree.
