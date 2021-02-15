@@ -47,9 +47,7 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
         val tunedOffset = if (offset < 0) 0 else offset
 
         val prefixRoot = if (prefix.isEmpty()) root else findPrefixRoot(prefix)
-        return prefixRoot?.let {
-            exploreChildrenValuesViaDFS(it, tunedOffset, limit)
-        } ?: listOf()
+        return prefixRoot?.let { exploreChildrenValuesViaDFS(it, tunedOffset, limit) }.orEmpty()
     }
 
     /*
