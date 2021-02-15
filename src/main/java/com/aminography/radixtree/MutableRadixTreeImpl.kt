@@ -7,13 +7,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 /**
- * A concrete implementation for [RadixTree].
- * Overall, `RadixTree` or compressed trie is the compact and space-optimized form of prefix tree
- * which enables us to find all nodes starting with a prefix string by a `O(L + V)` complexity order,
- * where `L` is the length of input prefix, and `V` stands for number of nodes containing the desired
- * value. In case of large datasets, the length of keys are dramatically lower than number of items,
- * which means that the time complexity of prefix search using `RadixTree` is significantly better
- * than linear search.
+ * A concrete implementation for [MutableRadixTree].
  *
  * @param T the type of the elements contained in the tree.
  *
