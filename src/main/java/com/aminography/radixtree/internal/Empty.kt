@@ -19,7 +19,7 @@ internal object EmptyRadixTree : RadixTree<Nothing>, Serializable {
     override fun get(key: String): Nothing? = null
     override val values: List<Nothing> get() = EmptyList
     override val entries: Set<RadixTree.Entry<Nothing>> get() = EmptySet
-    override fun searchPrefix(prefix: String, offset: Int, limit: Int): List<Nothing> = EmptyList
+    override fun prefixSearch(prefix: String, offset: Int, limit: Int): List<Nothing> = EmptyList
 }
 
 private object EmptySet : Set<Nothing>, Serializable {
