@@ -28,16 +28,16 @@ interface MutableRadixTree<T> : RadixTree<T> {
     fun remove(key: String, value: T): Boolean
 
     /**
-     * Find an existing entry and replace it's value. If no existing entry, do nothing
+     * Finds an existing entry and replace its value. If there is no existing entry, does nothing.
      *
-     * @param key The key for which to search the tree.
-     * @param value The value to set for the entry
-     * @return true if an entry was found for the given key, false if not found
+     * @param key the key of the element to be replaced.
+     * @param value the element to be replaced.
+     * @return true if an entry was found for the given key, false if not found.
      */
     fun replace(key: String, value: T): Boolean
 
     /**
-     * Removes all elements from this map.
+     * Removes all elements from this tree.
      */
     fun clear()
 
