@@ -47,9 +47,7 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
         val tunedOffset = if (offset < 0) 0 else offset
 
         val prefixRoot = if (prefix.isEmpty()) root else findPrefixRoot(prefix)
-        return prefixRoot?.let {
-            exploreChildrenValuesViaDFS(it, tunedOffset, limit)
-        } ?: listOf()
+        return prefixRoot?.let { exploreChildrenValuesViaDFS(it, tunedOffset, limit) }.orEmpty()
     }
 
     /*
@@ -94,9 +92,8 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
 
     /*
      * Explores all of the nodes in the subtree of [root] by using a Depth-First Search (DFS) algorithm. The traversal
-     * is in such a way that the order of inserting elements gets retained in the resulting list. To analyze the time
-     * complexity for this function, consider `V` as the number of nodes containing a value. The maximum number of nodes
-     *  should be traversed to explore them is `(2V - 1)`. So, we can say that the time complexity is `O(V)`.
+     * is in such a way that the order of inserting elements gets retained in the resulting list. The time complexity of
+     * this function is `O(V)`, where `V` stands for the number of nodes containing a value.
      */
     private fun exploreChildrenValuesViaDFS(
         root: TreeNode<T>,
@@ -165,9 +162,11 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
      * Inserts the input element into the tree at the right place according to the corresponding key. The time
      * complexity to insert a node is `O(l)` where `l` is the length of the key associated with the value. So, the
      * overall complexity to inserting `n` pairs of key/value is `O(L * n)` where `L` stands for the maximum length of
-     *  keys in the dataset.
+     * keys in the dataset.
      */
     private fun insertNode(key: String, value: T): T? {
+        if (key.isEmpty()) return null
+
         size++
         var result: T? = null
 
@@ -287,6 +286,8 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
     }
 
     override fun replace(key: String, value: T): Boolean {
+        if (key.isEmpty()) return false
+
         findPrefixRoot(key)?.let {
             if (it.value != null) {
                 it.value = value
@@ -328,7 +329,7 @@ class MutableRadixTreeImpl<T>() : MutableRadixTree<T> {
                 return
             }
             println("┐ ${node?.key}" + (node?.value?.let { " [$it]" } ?: ""))
-            for (child in node?.children?.dropLast(1) ?: listOf()) {
+            for (child in node?.children?.dropLast(1).orEmpty()) {
                 print("$prefix├─")
                 traverse(child, "$prefix│ ")
             }
