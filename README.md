@@ -1,4 +1,5 @@
 # `RadixTree` :zap:
+[![Bintray](https://img.shields.io/bintray/v/aminography/maven/RadixTree?label=Bintray)](https://bintray.com/aminography/maven/RadixTree/_latestVersion)
 
 This project provides an implementation of [`RadixTree`](https://en.wikipedia.org/wiki/Radix_tree) data-structure, which is a great tool for indexing a large number of records with string keys and performing a prefix search with an optimal time complexity. 
 
