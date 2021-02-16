@@ -43,7 +43,7 @@ repositories {
 }
   
 dependencies {
-    implementation 'com.aminography:radixtree:1.1.0'
+    implementation 'com.aminography:radixtree:1.1.1'
 }
 ```
 
@@ -62,7 +62,7 @@ Add the following lines to your `pom.xml` file:
     <dependency>
         <groupId>com.aminography</groupId>
         <artifactId>radixtree</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
     </dependency>
 </dependencies>
 ```
