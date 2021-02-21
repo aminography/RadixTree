@@ -1,4 +1,5 @@
 # `RadixTree` :zap:
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2f74da3e62d4467d884fa87794c19af6)](https://app.codacy.com/gh/aminography/RadixTree?utm_source=github.com&utm_medium=referral&utm_content=aminography/RadixTree&utm_campaign=Badge_Grade)
 [![Bintray](https://img.shields.io/bintray/v/aminography/maven/RadixTree?label=Bintray)](https://bintray.com/aminography/maven/RadixTree/_latestVersion)
 
 This project provides an implementation of [`RadixTree`](https://en.wikipedia.org/wiki/Radix_tree) data-structure, which is a great tool for indexing a large number of records with string keys and performing a prefix search with an optimal time complexity. 
