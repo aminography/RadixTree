@@ -17,8 +17,8 @@ Table of Contents
 
 Main Characteristics
 --------------------
-- Space and time efficiency
-- In case of sorted keys in insertion. it preserves the order.
+- Space and time efficient.
+- Retrives elements sorted, when elements insertion is sorted.
 
 <br/>
 
