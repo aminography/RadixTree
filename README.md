@@ -4,8 +4,6 @@
 
 This project provides an implementation of [`RadixTree`](https://en.wikipedia.org/wiki/Radix_tree) data-structure, which is a great tool for indexing a large number of records with string keys and performing a prefix search with an optimal time complexity. 
 
-### Documentation is evolving...
-
 <br/>
 
 Table of Contents
