@@ -1,4 +1,5 @@
 # `RadixTree` :zap:
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2f74da3e62d4467d884fa87794c19af6)](https://app.codacy.com/gh/aminography/RadixTree?utm_source=github.com&utm_medium=referral&utm_content=aminography/RadixTree&utm_campaign=Badge_Grade)
 [![Bintray](https://img.shields.io/bintray/v/aminography/maven/RadixTree?label=Bintray)](https://bintray.com/aminography/maven/RadixTree/_latestVersion)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5716eecf43294ddd9463e129cf6d6073)](https://www.codacy.com/gh/aminography/RadixTree/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aminography/RadixTree&amp;utm_campaign=Badge_Grade)
 
