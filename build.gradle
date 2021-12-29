@@ -1,45 +1,22 @@
-plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
-    id 'com.jfrog.bintray' version '1.8.5'
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+apply from: rootProject.file('scripts/publish-root.gradle')
+
+buildscript {
+    apply from: rootProject.file('scripts/versions.gradle')
+
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath plugin.jetbrains.kotlin
+        classpath plugin.jetbrains.dokka
+        classpath plugin.nexus.publish
+    }
 }
 
-group 'com.aminography'
-version '1.1.1'
-
-repositories {
-    mavenCentral()
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    testImplementation 'junit:junit:4.13.2'
-}
-
-compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'RadixTree'
-    orgName = 'aminography'
-
-    libraryDescription = 'RadixTree is an implementation of Radix Trie.'
-
-    siteUrl = 'https://github.com/aminography/RadixTree'
-    gitUrl = 'https://github.com/aminography/RadixTree.git'
-
-    developerId = 'aminography'
-    developerName = 'Mohammad Amin Hassani'
-    developerEmail = 'aminography@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
-
-apply from: rootProject.file('gradle/bintray-install.gradle')
-apply from: rootProject.file('gradle/bintray-java.gradle')

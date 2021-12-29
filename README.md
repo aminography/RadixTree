@@ -16,7 +16,7 @@ Table of Contents
 Main Characteristics
 --------------------
 - Space and time efficient.
-- Retrives elements sorted, when elements insertion is sorted.
+- Retrieves elements sorted, when elements insertion is sorted.
 
 <br/>
 
@@ -32,18 +32,14 @@ In case of large datasets, the length of keys are dramatically lower than number
 
 Download
 --------
-**`RadixTree`** is available on [bintray](https://bintray.com/aminography/maven/RadixTree) to download using build tools systems.
+**`RadixTree`** is available on `MavenCentral` to download using build tools systems.
 
 ### • Gradle
 Add the following lines to your `build.gradle` file:
 
 ```gradle
-repositories {
-    jcenter()
-}
-  
 dependencies {
-    implementation 'com.aminography:radixtree:1.1.1'
+    implementation 'com.aminography:radixtree:1.2.0'
 }
 ```
 
@@ -51,18 +47,11 @@ dependencies {
 Add the following lines to your `pom.xml` file:
 
 ```xml
-<repositories>
-    <repository>
-        <id>jcenter</id>
-        <url>https://jcenter.bintray.com/</url>
-    </repository>
-</repositories>
-
 <dependencies>
     <dependency>
         <groupId>com.aminography</groupId>
         <artifactId>radixtree</artifactId>
-        <version>1.1.1</version>
+        <version>1.2.0</version>
     </dependency>
 </dependencies>
 ```

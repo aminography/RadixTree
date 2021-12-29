@@ -1,1 +1,25 @@
-rootProject.name = 'radixtree'
+rootProject.name = 'RadixTree'
+include ':library'
+
+enableFeaturePreview('VERSION_CATALOGS')
+dependencyResolutionManagement {
+    versionCatalogs {
+        dep {
+            alias('junit-core').to('junit:junit:4.13.2')
+        }
+
+        plugin {
+            alias('jetbrains-kotlin').to('org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10')
+            alias('jetbrains-dokka').to('org.jetbrains.dokka:dokka-gradle-plugin:1.5.0')
+            alias('nexus-publish').to('io.github.gradle-nexus:publish-plugin:1.1.0')
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}

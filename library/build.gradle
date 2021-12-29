@@ -1,0 +1,27 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+java {
+    sourceCompatibility = versions.javaTarget
+    targetCompatibility = versions.javaTarget
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = versions.kotlinJvmTarget
+    }
+}
+
+dependencies {
+    testImplementation dep.junit.core
+}
+
+ext.publishInfo = [
+        groupId    : 'com.aminography',
+        artifactId : 'radixtree',
+        version    : libVersion.name,
+        description: 'RadixTree is an implementation of Radix Trie.',
+        githubRepo : 'RadixTree' /* https://github.com/aminography/# */
+]
+
+apply from: rootProject.file('scripts/publish-module.gradle')
